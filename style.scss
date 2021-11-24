@@ -1,0 +1,558 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+$main: #ed2527;
+$dark: #222;
+$white: #fff;
+$light: #ddd;
+$blue: #3552A4;
+$poppins:  'Poppins', sans-serif;
+
+@mixin borderRadus($px) {
+  border-radius: $px;
+  -webkit-border-radius: $px;
+  -moz-border-radius: $px;
+  -ms-border-radius: $px;
+  -o-border-radius: $px;
+}
+@mixin transition($sc) {
+  transition: $sc;
+  -webkit-transition: $sc;
+  -moz-transition: $sc;
+  -ms-transition: $sc;
+  -o-transition: $sc;
+}
+@mixin transform($direction) {
+  transform: $direction;
+  -webkit-transform: $direction;
+  -moz-transform: $direction;
+  -ms-transform: $direction;
+  -o-transform: $direction;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-transform: capitalize;
+  list-style: none;
+  @include transition(.3s linear);
+  border: none;
+  outline: none;
+}
+a {
+  text-decoration: none;
+}
+img{
+  max-width: 100%;
+}
+.title{
+  font-size: 5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  span{
+    text-transform: uppercase;
+    color: $main;
+  }
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+body{
+  overflow-x: hidden;
+  font-family: $poppins;
+}
+p{
+  font-size: 1.8rem;
+  font-weight: 500;
+  line-height: 3.2rem;
+}
+
+.header {
+  position: fixed;
+  background: rgba(255, 255, 255, 0.521);
+  width: 100%;
+  z-index: 999;
+  padding: .5rem 8%;
+
+  .navbar {
+    display: flex;
+    align-items: center;
+    .logo {
+      width: 180px;
+      img {
+        width: 100%;
+      }
+    }
+    .iconMenu{
+      border: none;
+      outline: none;
+      display: none;
+      background: transparent;
+      
+      i{
+        font-size: 3rem;
+        color: $dark;        
+      }
+    }
+    .menubar {
+      display: flex;
+      align-items: center;
+      a {
+        margin: 0 2rem;
+        font-size: 1.7rem;
+        font-weight: 600;
+        position: relative;
+        color: $dark;
+        &::before {
+          position: absolute;
+          bottom: -2rem;
+          width: 0%;
+          right: 0;
+          height: 0.3rem;
+          content: "";
+          background: $main;
+          @include borderRadus(10rem);
+          @include transition(0.3s ease);
+        }
+
+        &:hover {
+          color: $main;
+          &::before {
+            width: 100%;
+            left: 0;
+          }
+        }
+        &.active {
+          color: $main;
+          &::before {
+            width: 100%;
+          }
+        }
+      }
+    }
+  }
+  &.active{
+    box-shadow: 0 5px 2px 1px rgba(224, 37, 40, 0.452);
+    background: $white;
+    .menubar{
+      a{
+        color: $dark;
+      }
+    }
+  }
+  
+}
+
+#home{
+  position: relative;
+  height: 90vh;
+  .carousel-inner{
+    width: 100%;
+    height: 100%;
+    .carousel-item{
+      height: 100%;
+      position: relative;
+      img{
+        height: 100%;
+        user-select: none;
+      }
+      .content{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 99;
+        @include transform(translate(-50%, -50%));
+        text-align: center;
+        .title{
+          color: $white;
+          font-size: 5rem;
+          letter-spacing: 1px;
+          font-weight: 700;
+          text-shadow: 1px 1px $main;
+          user-select: none;
+        }
+        p{
+          margin-top: 1.5rem;
+          color: $light;
+          user-select: none;
+        }
+        .form{
+          background-color: $white;
+          width: 70%;
+          margin: 5rem auto 0;
+          display: flex;
+          justify-content: space-between;
+          @include borderRadus(3rem);
+          font-size: 2rem;
+          input{
+            width: 65%;
+            padding: 1rem;
+            outline: none;
+            @include borderRadus(3rem);
+            border: none;
+            text-transform: lowercase;
+            background: transparent;
+          }
+          button{
+            width: 35%;
+            padding: 1rem;
+            outline: none;
+            @include borderRadus(3rem);
+            border: none;
+            background-color: $main;
+            color: $white;
+          }
+        }
+      }
+    }
+  } 
+}
+
+
+
+
+#about{
+  padding: 14rem 0 0;
+  p{
+    color: #777;
+  }
+  .imgBox{
+    overflow: hidden;
+    &:hover{
+      img{
+        @include transform(scale(1.3));
+      }
+    }
+  }
+  .iconBox{
+    i{
+      font-size: 3rem;
+      padding: 1.2rem;
+      @include borderRadus(50%);      
+      color: $main;
+      border: 1px dashed $main;
+      &:hover{
+        @include borderRadus(0);
+      }
+}
+    h3{
+      font-size: 3rem;
+      font-weight: 700;
+    }
+  }
+}
+
+#gallery{
+  padding: 14rem 0 8rem;
+  p{
+    color: #777;
+  }
+  .imgBox{  
+    cursor: pointer;  
+    &:hover{
+      @include transform(scale(1.3));
+    }
+  }
+  .btns-group{    
+    button{
+      font-size: 2rem;
+      padding: .5rem 1rem;
+      @include borderRadus(.5rem);
+      &:hover{
+        color: $main;
+      }
+      &.active{
+        color: $main;
+      }
+    }
+  }
+  .iconBox{    
+    gap: 2rem;
+    img{
+      width: 12%;
+      padding: .5rem;
+      border: 1px dashed $main;
+      @include borderRadus(50%);
+    }
+    .content{
+      display: flex;
+      flex-direction: column;
+      h6{
+        font-size: 2rem;
+        color: $dark;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+#team{
+  background-color: $blue;
+  padding: 8rem 0;
+  p{
+    font-size: 2rem;
+    color: #E5B7B7;
+  }
+  .title{
+    color: $white;
+  }
+  .swiper {
+    margin-top: 5rem;
+    .cards{
+      background: $white;
+      @include borderRadus(.5rem);
+      position: relative;
+      text-align: center;
+      height: 35rem;
+      overflow: hidden;
+      background: linear-gradient(#DDDDDD, #FAACA8) 100%;
+      .content{
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        background: #ED5152;
+        @include borderRadus(.5rem);
+        h5{
+          color: $white;
+          font-size: 2rem;
+          margin-bottom: .5rem;
+          margin-top: 2rem;
+        }
+        p{
+          font-size: 1.8rem;
+          font-weight: 500;
+          color: $light;
+        }
+        
+      }
+    }
+  }
+}
+
+#blog{
+  padding: 14rem 0 8rem;
+  .box{
+    position: relative;
+    @include borderRadus(.5rem);
+    
+    .date{
+      position: absolute;
+      top: 0;
+      left: 0;
+      background: rgba(0,0,0,.7);
+      @include borderRadus(.5rem);
+      color: $white;
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      padding: .5rem 1rem 0;
+      h3{
+        font-size: 3rem;
+        font-weight: bold;
+        line-height: 3rem;
+      }
+      p{
+        font-size: 1.2rem;
+        line-height: 1rem;
+      }
+    }
+    .context{
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: $dark;
+      color: $white;
+      padding: 2rem;
+      font-size: 1.5rem;
+      @include borderRadus(.5rem);
+    }
+  }
+  .content{
+    h2{
+      font-size: 2.5rem;
+      font-weight: 600;
+      margin-top: 3rem;
+      color: $dark;
+    }
+    button{
+      margin-top: 3rem;
+      padding: .5rem 2rem;
+      border: 1px dashed $main;
+      font-size: 2rem;
+      background: transparent;
+     @include borderRadus(3rem);
+     color: $main;
+     &:hover{
+       @include borderRadus(0);
+     }
+    }
+  }
+}
+
+.footer{
+  background-color: $dark;
+  padding: 8rem 0;
+  .contact{
+    border-bottom: 1px dashed #ccc;
+  
+  .iconBox{
+    color: $white;
+    text-align: center;
+    gap: 2rem;
+    font-size: 1.8rem;
+    i{
+      font-size: 2.5rem;
+      padding: 1.5rem;
+      border: 1px dashed $main;
+      @include borderRadus(50%);
+      margin-bottom: 1rem;
+      color: $white;
+      &:hover{
+        @include borderRadus(0);
+      }
+      
+    }
+  }
+}
+h3{
+  font-size: 2rem;
+  color: $main;
+  margin-bottom: 2rem;
+ &.subsribe{
+   color: $white;
+ }
+}
+.link{
+  font-size: 1.8rem;
+  a{
+    color: $light;
+  } 
+}
+.form{
+  font-size: 1.8rem;
+  input,button{    
+    @include borderRadus(.5rem);
+    padding: .5rem 1.5rem;    
+  }
+  input{
+    text-transform: lowercase;
+    display: block;
+    width: 100%;
+  }
+  button{
+    background: $main;
+    color: $white;
+    margin-top: 2rem;
+  }
+  
+}
+.social-link{
+  margin-top: 5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  a{
+    font-size: 2rem;
+    color: $white;
+    cursor: pointer;
+    &:hover{
+      color: $main;
+    }
+    
+  }
+}
+.copy{
+  color: #ccc;
+  font-size: 1.5rem;
+  padding-top: 5rem;
+}
+}
+
+
+
+
+
+@media (max-width: 991px) {
+  html {
+    font-size: 55% !important;
+  }
+  .header{
+    .navbar{
+      .iconMenu{
+        display: block;
+      }
+      .menubar{
+        position: absolute;
+        top: 108%;
+        width: 100%;
+        padding-bottom: 3rem;
+        display: flex;
+        flex-direction: column;
+        
+        background-color: $white;
+        @include borderRadus(.5rem);
+        @include transform(scale(0));
+        opacity: 0;
+        @include transition(.3s ease);
+        a{
+          color: $dark;
+          margin-top: 5rem;
+          display: block;
+          width: 100%;
+          text-align: center;
+        }
+
+        &.active{
+          @include transform(scale(1));
+          opacity: 1;
+        }
+      }
+    }
+  }
+ 
+}
+
+@media (max-width: 768px) {
+  #home{
+    height: 80vh;
+    .carousel-item{
+      .content{
+        .title{
+          font-size: 3rem !important;
+        }
+        .form{
+          width: 100% !important;
+          font-size: 1.5rem !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 450px) {
+  html {
+    font-size: 50% !important;
+  }
+  #home{
+    height: 100vh;
+    .carousel-item{
+      .content{
+        .title{
+          font-size: 2rem !important;
+        }
+        .form{
+          width: 100% !important;
+          font-size: 1rem !important;
+        }
+      }
+    }
+  }
+}
